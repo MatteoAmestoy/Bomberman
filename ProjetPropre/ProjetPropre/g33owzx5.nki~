@@ -1,0 +1,34 @@
+#ifndef Map_HEADER
+#define Map_HEADER
+#include "Bomb.h"
+#include "Mur.h"
+#include "Perso.h"
+#include <vector>
+#include <array>
+#include <utility>
+using namespace std;
+
+
+class Bomb;
+class Map
+{
+public:
+	Map();
+
+	void render(SDL_Renderer* *gRenderer, LTexture2 *gWallTexture, LTexture2 *gBombPosTexture, LTexture2 *gBombTexture, LTexture2 *gDetoTexture, LTexture2 *gPuissTexture);
+	Wall* getij(int i, int j);
+	Bomb* getbij(int i, int j);
+	void BBexp(int i, int j, int puiss);
+	bool detruire(int i, int j);
+	
+	void acti();
+	void actiP(Perso* J);
+private:
+
+
+	// la carte sera une matrice de taille width*height avec mur
+	array<array< Wall* , 12>, 12> carte;
+	// carte des bombes posees
+	array<array< Bomb*, 12>, 12> bcarte;
+};
+#endif
