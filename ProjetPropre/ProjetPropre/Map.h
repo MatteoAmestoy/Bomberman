@@ -15,8 +15,9 @@ class Bomb;
 class Map
 {
 public:
-	Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor,  Perso* J11, Perso *J12, Perso* J13, Perso* J14);
-
+	Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor,  Perso* J11, Perso *J12, Perso* J13, Perso* J14,int choix);
+	void Map1();
+	void Map2();
 	void render(LTexture2 *gWallTexture, LTexture2 *gBombPosTexture, LTexture2 *gBombTexture, LTexture2 *gDetoTexture, LTexture2 *gPuissTexture, LTexture2 *gStWallTexture);
 	Wall* getij(int i, int j);
 	Bomb* getbij(int i, int j);

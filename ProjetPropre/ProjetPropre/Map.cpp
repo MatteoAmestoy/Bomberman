@@ -2,7 +2,7 @@
 #include "Bomb.h"
 #include "Perso.h"
 
-Map::Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor, Perso* J11, Perso *J12, Perso* J13, Perso* J14)
+Map::Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor, Perso* J11, Perso *J12, Perso* J13, Perso* J14,int choix)
 {
 
 	int x(0);
@@ -10,14 +10,31 @@ Map::Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor, Perso* J11, Per
 
 	for (x = 0; x < 12; x++)
 	{
-		for (y =0; y <12; y++)
+		for (y = 0; y <12; y++)
 		{
 			bcarte[x][y] = new Bomb(0, 0);
-			carte[x][y] = new Wall (x, y, 0);
-			
+			carte[x][y] = new Wall(x, y, 0);
+
 		}
 
 	}
+	if (choix == 1){ Map1(); }
+	else{ Map2(); }
+	gRenderer = gRender;
+	vert = ver;
+	hori = hor;
+	J1 = J11;
+	J2 = J12;
+	J3 = J13;
+	J4 = J14;
+
+
+
+}
+void Map::Map1()
+{
+
+
 	(*(carte[0][0])).Destroy();
 	(*(carte[0][11])).Destroy();
 	(*(carte[11][11])).Destroy();
@@ -33,7 +50,7 @@ Map::Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor, Perso* J11, Per
 	(*(carte[10][11])).Destroy();
 	(*(carte[1][11])).Destroy();
 
-	for (int a = 1; a < 12; a=a+3)
+	for (int a = 1; a < 12; a = a + 3)
 	{
 		for (int b = 1; b < 12; b = b + 3)
 		{
@@ -42,7 +59,7 @@ Map::Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor, Perso* J11, Per
 		}
 
 	}
-	for (int a = 0; a < 12; a = a+3)
+	for (int a = 0; a < 12; a = a + 3)
 	{
 		for (int b = 1; b < 12; b = b + 4)
 		{
@@ -52,24 +69,60 @@ Map::Map(SDL_Renderer* *gRender, LTexture2 *ver, LTexture2 *hor, Perso* J11, Per
 	}
 
 
-	
+
 	(*(carte[3][3])).pObjet(2);
 	(*(carte[8][8])).pObjet(2);
 	(*(carte[8][3])).pObjet(2);
 	(*(carte[3][8])).pObjet(2);
-
-	gRenderer = gRender;
-	vert = ver;
-	hori = hor;
-	J1 = J11;
-	J2 = J12;
-	J3 = J13;
-	J4 = J14;
+}
+void Map::Map2()
+{
 
 
+	(*(carte[0][0])).Destroy();
+	(*(carte[0][11])).Destroy();
+	(*(carte[11][11])).Destroy();
+	(*(carte[11][0])).Destroy();
+
+	(*(carte[1][0])).Destroy();
+	(*(carte[0][1])).Destroy();
+	(*(carte[11][10])).Destroy();
+	(*(carte[10][0])).Destroy();
+
+	(*(carte[11][1])).Destroy();
+	(*(carte[0][10])).Destroy();
+	(*(carte[10][11])).Destroy();
+	(*(carte[1][11])).Destroy();
+	
+	(*(carte[4][5])).Destroy();
+	(*(carte[5][7])).Destroy();
+	(*(carte[7][6])).Destroy();
+	(*(carte[6][4])).Destroy();
+	for (int a = 1; a < 12; a = a + 3)
+	{
+		for (int b = 1; b < 12; b = b + 3)
+		{
+			(*(carte[a][b])).pstwall();
+
+		}
+
+	}
+	for (int a = 0; a < 12; a = a + 3)
+	{
+		for (int b = 1; b < 12; b = b + 4)
+		{
+			if ((*(carte[a][b])).getdWall()){ (*(carte[a][b])).pObjet(1); (*(carte[b][a])).pObjet(3); }
+		}
+
+	}
+
+
+	(*(carte[4][5])).pObjet(2);
+	(*(carte[5][7])).pObjet(2);
+	(*(carte[7][6])).pObjet(2);
+	(*(carte[6][4])).pObjet(2);
 
 }
-
 Wall* Map::getij(int i, int j){ return carte[i][j]; };
 Bomb* Map::getbij(int i, int j){ return bcarte[i][j]; };
 

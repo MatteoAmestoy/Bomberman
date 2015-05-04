@@ -55,8 +55,8 @@ void Perso::handleEvent(SDL_Event& e)
 			case SDLK_DOWN: mVelY -= PERSO_VEL; break;
 			case SDLK_LEFT: mVelX += PERSO_VEL; break;
 			case SDLK_RIGHT: mVelX -= PERSO_VEL; break;
-			case SDLK_m: act = 1; break;
-			case SDLK_COMMA: act = 2; break;
+			case SDLK_b: act = 1; break;
+			case SDLK_n: act = 2; break;
 
 			}
 		}
@@ -68,9 +68,9 @@ void Perso::handleEvent(SDL_Event& e)
 			//Adjust the velocity
 			switch (e.key.keysym.sym)
 			{
-			case SDLK_w: mVelY -= PERSO_VEL; break;
+			case SDLK_z: mVelY -= PERSO_VEL; break;
 			case SDLK_s: mVelY += PERSO_VEL; break;
-			case SDLK_a: mVelX -= PERSO_VEL; break;
+			case SDLK_q: mVelX -= PERSO_VEL; break;
 			case SDLK_d: mVelX += PERSO_VEL; break;
 			}
 		}
@@ -80,9 +80,9 @@ void Perso::handleEvent(SDL_Event& e)
 			//Adjust the velocity
 			switch (e.key.keysym.sym)
 			{
-			case SDLK_w: mVelY += PERSO_VEL; break;
+			case SDLK_z: mVelY += PERSO_VEL; break;
 			case SDLK_s: mVelY -= PERSO_VEL; break;
-			case SDLK_a: mVelX += PERSO_VEL; break;
+			case SDLK_q: mVelX += PERSO_VEL; break;
 			case SDLK_d: mVelX -= PERSO_VEL; break;
 			case SDLK_1: act = 1; break;
 			case SDLK_2: act = 2; break;
@@ -97,10 +97,10 @@ void Perso::handleEvent(SDL_Event& e)
 			//Adjust the velocity
 			switch (e.key.keysym.sym)
 			{
-			case SDLK_UP: mVelY -= PERSO_VEL; break;
-			case SDLK_DOWN: mVelY += PERSO_VEL; break;
-			case SDLK_LEFT: mVelX -= PERSO_VEL; break;
-			case SDLK_RIGHT: mVelX += PERSO_VEL; break;
+			case SDLK_i: mVelY -= PERSO_VEL; break;
+			case SDLK_k: mVelY += PERSO_VEL; break;
+			case SDLK_j: mVelX -= PERSO_VEL; break;
+			case SDLK_l: mVelX += PERSO_VEL; break;
 			}
 		}
 		//If a key was released
@@ -109,12 +109,12 @@ void Perso::handleEvent(SDL_Event& e)
 			//Adjust the velocity
 			switch (e.key.keysym.sym)
 			{
-			case SDLK_UP: mVelY += PERSO_VEL; break;
-			case SDLK_DOWN: mVelY -= PERSO_VEL; break;
-			case SDLK_LEFT: mVelX += PERSO_VEL; break;
-			case SDLK_RIGHT: mVelX -= PERSO_VEL; break;
-			case SDLK_a: act = 1; break;
-			case SDLK_z: act = 2; break;
+			case SDLK_i: mVelY += PERSO_VEL; break;
+			case SDLK_k: mVelY -= PERSO_VEL; break;
+			case SDLK_j: mVelX += PERSO_VEL; break;
+			case SDLK_l: mVelX -= PERSO_VEL; break;
+			case SDLK_8: act = 1; break;
+			case SDLK_9: act = 2; break;
 
 			}
 		}
@@ -126,10 +126,10 @@ void Perso::handleEvent(SDL_Event& e)
 			//Adjust the velocity
 			switch (e.key.keysym.sym)
 			{
-			case SDLK_UP: mVelY -= PERSO_VEL; break;
-			case SDLK_DOWN: mVelY += PERSO_VEL; break;
-			case SDLK_LEFT: mVelX -= PERSO_VEL; break;
-			case SDLK_RIGHT: mVelX += PERSO_VEL; break;
+			case SDLK_t: mVelY -= PERSO_VEL; break;
+			case SDLK_g: mVelY += PERSO_VEL; break;
+			case SDLK_f: mVelX -= PERSO_VEL; break;
+			case SDLK_h: mVelX += PERSO_VEL; break;
 			}
 		}
 		//If a key was released
@@ -138,12 +138,12 @@ void Perso::handleEvent(SDL_Event& e)
 			//Adjust the velocity
 			switch (e.key.keysym.sym)
 			{
-			case SDLK_UP: mVelY += PERSO_VEL; break;
-			case SDLK_DOWN: mVelY -= PERSO_VEL; break;
-			case SDLK_LEFT: mVelX += PERSO_VEL; break;
-			case SDLK_RIGHT: mVelX -= PERSO_VEL; break;
-			case SDLK_a: act = 1; break;
-			case SDLK_z: act = 2; break;
+			case SDLK_t: mVelY += PERSO_VEL; break;
+			case SDLK_g: mVelY -= PERSO_VEL; break;
+			case SDLK_f: mVelX += PERSO_VEL; break;
+			case SDLK_h: mVelX -= PERSO_VEL; break;
+			case SDLK_x: act = 1; break;
+			case SDLK_c: act = 2; break;
 
 			}
 		}
@@ -290,11 +290,13 @@ void Perso::poseBombe(Map *carte)
 	int i = (mPosX + 22) / 45;
 	if (Bd > 0)
 	{
-		(*((*carte).getij(i, j))).pObjet(10);
-		(*((*carte).getbij(i, j))).amorce(i,j,puiss,det);
-		(*((*carte).getbij(i, j))).setPerso(this);
-		Bd -= 1;
-		
+		if ((*((*carte).getij(i, j))).getob() != 10)
+		{
+			(*((*carte).getij(i, j))).pObjet(10);
+			(*((*carte).getbij(i, j))).amorce(i, j, puiss, det);
+			(*((*carte).getbij(i, j))).setPerso(this);
+			Bd -= 1;
+		}
 		
 
 	}
@@ -312,8 +314,10 @@ void Perso::ramPuiss(){ puiss += 1; }
 
 void Perso::actdeto(Map* carte)
 {
-	(*carte).actiP(this);
-
+	if (det == true)
+	{
+		(*carte).actiP(this);
+	}
 }
 void Perso::bexp(){ Bd += 1; }
 int Perso::geti(){	return 	((mPosX + 22) / 45);}
